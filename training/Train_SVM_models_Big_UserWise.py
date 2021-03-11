@@ -1,6 +1,6 @@
 from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import KFold
-from sklearn.externals import joblib
+import joblib
 from sklearn.svm import SVR
 from pathlib import Path
 import pandas as pd
@@ -13,6 +13,11 @@ import os
 #configs
 post_threshold = 3
 dataset_path = "../FastText/dataset.vec"
+try:
+    os.makedirs("Models/MPBig")
+except FileExistsError:
+    # directory already exists
+    pass
 
 training_samples = []
 yO = []

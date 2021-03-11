@@ -1,5 +1,5 @@
 from sklearn.metrics import mean_squared_error
-from sklearn.externals import joblib
+import joblib
 from sklearn.svm import SVR
 import datasetUtils as dsu
 import numpy as np
@@ -11,6 +11,12 @@ method = "conc"
 post_threshold = 3
 dataset = "fasttext"
 dataset_path = "../FastText/dataset.vec"
+
+try:
+    os.makedirs("Models/SVM")
+except FileExistsError:
+    # directory already exists
+    pass
 
 posts = []
 yO = []
