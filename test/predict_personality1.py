@@ -17,12 +17,12 @@ analyzer = vectorizer.build_analyzer()
 usernames = []
 search_input = input("enter username or filename:")
 if not Path(search_input).is_file():
-	#entered username
+    #entered username
     if search_input.startswith("@"):
         search_input = search_input.strip("@")
     usernames.append(search_input)
 else:
-	#entered file name
+    #entered file name
     if os.stat(Path(search_input)).st_size == 0:
         sys.exit("Error. File is empty.")
     for name in open(search_input, "r"):        
