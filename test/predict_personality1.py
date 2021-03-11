@@ -1,5 +1,5 @@
 from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.externals import joblib
+import joblib
 from pathlib import Path
 import numpy as np
 import datasetUtils as dsu
