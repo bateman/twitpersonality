@@ -1,6 +1,7 @@
 from sklearn.feature_extraction.text import CountVectorizer
 import numpy as np
 
+
 #the function expects documents to be a list of documents. To use just one document, pass [[document]]
 def transformTextForTraining(embed_dictionary, length_threshold, documents, y_O, y_C, y_E, y_A, y_N, operation, FastText, friends=None):
     vectorizer = CountVectorizer(stop_words="english", analyzer="word")
@@ -18,7 +19,10 @@ def transformTextForTraining(embed_dictionary, length_threshold, documents, y_O,
     i = 0
 
     for document in documents:
-        words = analyzer(document)
+        try:
+            words = analyzer(document)
+        except:
+            continue
         #words = tokenizer(document)
         if len(words) < length_threshold and not string:
             deleted += 1
@@ -126,6 +130,6 @@ def transformTextForTesting(embed_dictionary, length_threshold, documents, opera
             text_embeddings.append(np.concatenate((npmax, npmin, npavg)))
 
     if len(text_embeddings) == 0:
-        raise StandardError
+        raise Exception('Zero embeddings error.')
 
     return np.array(text_embeddings)
